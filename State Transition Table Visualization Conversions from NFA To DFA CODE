@@ -1,0 +1,22 @@
+import pandas as pd
+
+nfa = {}
+o = int(input("State number for NFA ")) 
+#input the overall State number for NFA. Ex: If you want to create state a,b, and c put in 3.
+p = int(input("Number of transitions in NFA "))  #Input Number of transitions in NFA eg: if you want to create a and b for transition type 2.
+for i in range(o):
+    state = input("The name of the state: ") #This is where you name the state. eg: A,b,c,1,2,3,4,etc....
+    nfa[state] = {}
+    for j in range(p):
+        path = input("What are the paths ") #create the path on top of the transition. Eg: path 0 in transition one and path 1 in transition two.
+        print("What are the final states from first state  {} that will travel throught the path {} : ".format(state, path))
+        reaching_state = [x for x in input().split()] #the end state for NFA Table.
+        nfa[state][path] = reaching_state #This is to make sure that the end state is displayed in the paths
+print("\nNFA :- \n")
+print(nfa)
+print("\nThe NFA Table :- ") #Display the NFA table 
+nfa_table = pd.DataFrame(nfa)
+print(nfa_table.transpose())
+
+print("What is the the state of NFA: ")
+nfa_final_state = [x for x in input().split()] #Input the final state.
